@@ -1,4 +1,6 @@
 # Aplicación CREAR - ACTUALIZAR - ELIMINAR ESTUDIANTES - ASIGNARLES CURSOS O MATERIAS
+El api esta alojado en server.
+La parte del FrontEnd esta en client.
 
 # CONFIGURACION CONEXION BASE DE DATOS
 La cadena de conexion a la base de datos se configura en ruta server/.env
