@@ -1,0 +1,33 @@
+<div>
+  <tr>
+    <td colspan="4">
+    </td>
+  </tr>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+  <table id="tabla" class="table table-dark table-sm">
+    <thead>
+      <tr>
+
+        <th scope="col">Materia</th>
+        <th scope="col">NotaFinal</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+      <tr *ngFor="let course of listCourses">
+
+        <th>{{course.Materia}}</th>
+        <th>{{course.NotaFinal}}</th>
+        <button class="btn btn-danger" (click)="deleteCurso(course.Id)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>

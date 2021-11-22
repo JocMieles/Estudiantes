@@ -1,0 +1,109 @@
+<mat-tab-group>
+    <mat-tab label="ESTUDIANTE"> 
+<mat-toolbar>
+    <span>{{modalService.form.controls['Id'].value?"Modificar Estudiante":"Nuevo Estudiante"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button  [routerLink]="['/students']" (click)="onClose()" routerLinkActive="active" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+  <form [formGroup]="modalService.form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="400px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <input type="hidden" formControlName="Id">
+          <mat-form-field>
+            <input formControlName="Nombre1" matInput placeholder="Primer Nombre">
+            <mat-error *ngIf="modalService.form.controls['Nombre1'].errors?.['required']">El campo es requerido.</mat-error>
+            <mat-error *ngIf="modalService.form.controls['Nombre1'].errors?.['maxLength']">Se puede Maximo 20 caracteres.</mat-error>
+            <mat-error *ngIf="modalService.form.controls['Nombre1'].errors?.['pattern']">Solo caracteres.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="Nombre2" matInput placeholder="Segundo Nombre">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="Apellido1" matInput placeholder="Primer Apellido">
+            <mat-error>El campo es requerido.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="Apellido2" matInput placeholder="Segundo Apellido">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="Email" matInput placeholder="Email">
+            <mat-error>El campo es requerido.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="Celular" matInput placeholder="Celular">
+            <mat-error *ngIf="modalService.form.controls['Celular'].errors?.['patterns']">Minimo 8 numeros.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="Ciudad" matInput placeholder="City">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="controles-container">
+          
+          <div class="add-bottom-padding">
+            <p>Tipo Identificacion*</p>
+            
+            <mat-radio-group formControlName="TipoIdentificacion"  placeholder="Tipo Identificacion">
+              <mat-radio-button aria-checked="" value="CC">CC</mat-radio-button>
+              <mat-radio-button value="TI">TI</mat-radio-button>
+              <mat-radio-button value="PS">PS</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <mat-form-field>
+            <input formControlName="Identificacion" matInput placeholder="Identificacion">
+            <mat-error>Requerido.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+          <div class="add-bottom-padding">
+            <input formControlName="Direccion" matInput placeholder="Direccion">
+          </div>
+        </mat-form-field>
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit"  [disabled]="modalService.form.invalid" [routerLink]="['/newStudents']"  routerLinkActive="active">Guardar</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Limpiar</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+
+</mat-tab>
+<mat-tab label="CURSOS">
+  <mat-toolbar>
+    <span>Matricular Cursos</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button  [routerLink]="['/students']" (click)="onClose()"  routerLinkActive="active" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+    <form [formGroup]="modalService.formCourse" class="normal-form" (submit)="matricular()">
+      <mat-grid-list cols="2" rowHeight="200px">
+        <mat-grid-tile>
+          <div class="controles-container">
+      <input formControlName="IdEstudiante" type="hidden">
+      <mat-form-field appearance="fill">
+        <mat-label>Curso</mat-label>
+        
+        <mat-select formControlName="IdCurso" placeholder="Curso">
+          <mat-option aria-checked="true">None</mat-option>
+          <ng-container *ngFor="let course of courses">
+            <mat-option value="{{course.Id}}" >{{course.Nombre}}-{{course.Id}}</mat-option>
+            
+          </ng-container>
+          
+        </mat-select>
+        <mat-error>El Curso es requerido.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="NotaFinal" matInput placeholder="Nota Final">
+        <mat-error></mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [routerLink]="['/students']"  type="submit" [disabled]="modalService.formCourse.invalid" >Asignar Curso</button>
+    </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+    </form>
+
+</mat-tab>
+
+</mat-tab-group>

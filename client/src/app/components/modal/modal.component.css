@@ -1,0 +1,7 @@
+button{
+    margin-left: 10px; 
+    border: 1px solid #000000;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    background-color: rgb(118, 127, 139);
+}

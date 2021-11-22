@@ -1,0 +1,30 @@
+button{
+    margin-left: 10px; 
+    border: 1px solid #000000;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+}
+
+.eliminar{
+    color:white;
+    background-color: #e05b52;
+}
+
+.editar{
+    background-color: #c7b679;;
+    color: black;
+}
+.cursos{
+    background-color:#5060bb;
+    color: white;
+}
+.mat-elevation-z9{
+    background-color: rgb(148, 32, 32);
+    border-color: brown;
+}
+
+mat-header-cell{
+    background-color: rgb(28, 100, 94);
+    color: white;
+    font-size: 18px;
+}

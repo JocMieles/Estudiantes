@@ -1,0 +1,51 @@
+
+
+
+<div class="search-div">
+
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Buscar" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<div class="mat-elevation-z9">
+  
+  <mat-table [dataSource]="listData" matSort>
+    <ng-container matColumnDef="Identificacion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Identificacion</mat-header-cell>
+      <mat-cell *matCellDef="let student">{{student.Identificacion}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Nombre1">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Primer Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let student">{{student.Nombre1}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Apellido1">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Primer Apellido</mat-header-cell>
+      <mat-cell *matCellDef="let student">{{student.Apellido1}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
+      <mat-cell *matCellDef="let student">{{student.Email}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+
+        <button mat-button class="cursos" (click)="coursesStudent(row.Id, row)">CURSOS</button>
+        <button mat-icon-button class="editar" [routerLink]="['/updateStudents']" routerLinkActive="active" (click)="onEdit(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button class="eliminar" (click)="deleteStudent(row.Id)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+  </mat-table>
+
+</div>
